@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte Centro de Contacto · iPulso | Septiembre 2026</title>
+    
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Header Principal -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="brand-wrapper">
+                <img src="assets/ipulso_logo.png" alt="Logo iPulso" class="brand-logo-img">
+                <div class="brand-info">
+                    <span class="brand-title">Centro de Contacto</span>
+                    <span class="brand-subtitle">Coord. Inteligencia de Negocios · Mercadeo Hogares (GGMM)</span>
+                </div>
+            </div>
+
+            <div class="header-badges">
+                <span class="badge-tag badge-cyan">
+                    <span class="pulse-dot"></span>
+                    Período: Septiembre 2026
+                </span>
+                <span class="badge-tag badge-gold">
+                    Fecha de elaboración: 21/10/2026
+                </span>
+                <span class="badge-tag badge-fuchsia">
+                    Total: <strong id="kpi-header-total">1,826</strong> Casos
+                </span>
+                <span class="badge-tag badge-gold">
+                    FCR: <strong id="kpi-header-fcr">78.0%</strong>
+                </span>
+                <span class="badge-tag badge-cyan">
+                    Promedio: <strong id="kpi-header-promedio">83.0</strong>/día
+                </span>
+            </div>
+
+            <div class="header-actions">
+                <a id="btn-export-doc" href="https://docs.google.com/document/d/1x3r3bTbMh5RCe4ckTuUSEXqVJm4i6YnuiOlVqdtpgj0/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-neon btn-neon-cyan">
+                    <span>🖨️</span> Exportar
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Barra de Navegación por Pestañas (12 Secciones) -->
+    <nav class="nav-tabs-wrapper">
+        <ul class="nav-tabs-list">
+            <li class="nav-tab-item">
+                <button class="nav-tab-btn active" data-target="sec-1">
+                    <span class="tab-num">1</span> Resumen General
+                </button>
+            </li>
+            <li class="nav-tab-item">
+                <button class="nav-tab-btn" data-target="sec-2">
+                    <span class="tab-num">2</span> Segmentos
+                </button>
+            </li>
+            <li class="nav-tab-item">
+                <button class="nav-tab-btn" data-target="sec-3">
+                    <span class="tab-num">3</span> Top 5 Productos
+                </button>
+            </li>
+            <li class="nav-tab-item">
+                <button class="nav-tab-btn" data-target="sec-4">
+                    <span class="tab-num">4</span> Tipo de Solicitud
+                </button>
+            </li>
+            <li class="nav-tab-item">
+                <button class="nav-tab-btn" data-target="sec-5">
+                    <span class="tab-num">5</span> Averías & Fallas
+                </button>
+            </li>
+            <li class="nav-tab-item">
+                <button class="nav-tab-btn" data-target="sec-6">
+                    <span class="tab-num">6</span> Otro Requerimiento
+                </button>
+            </li>
+            <li class="nav-tab-item">
+                <button class="nav-tab-btn" data-target="sec-7">
+                    <span class="tab-num">7</span> Comportamiento Diario
+                </button>
+            </li>
+            <li class="nav-tab-item">
+                <button class="nav-tab-btn" data-target="sec-8">
+                    <span class="tab-num">8</span> Ranking Ejecutivos
+                </button>
+            </li>
+            <li class="nav-tab-item">
+                <button class="nav-tab-btn" data-target="sec-9">
+                    <span class="tab-num">9</span> Estado Final
+                </button>
+            </li>
+            <li class="nav-tab-item">
+                <button class="nav-tab-btn" data-target="sec-10">
+                    <span class="tab-num">10</span> Hallazgos Críticos
+                </button>
+            </li>
+            <li class="nav-tab-item">
+                <button class="nav-tab-btn" data-target="sec-11">
+                    <span class="tab-num">11</span> Recomendaciones
+                </button>
+            </li>
+            <li class="nav-tab-item">
+                <button class="nav-tab-btn" data-target="sec-12">
+                    <span class="tab-num">12</span> Datos Clave
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+
+        <!-- ==========================================
+             SECCIÓN 1: RESUMEN GENERAL
+             ========================================== -->
+        <section id="sec-1" class="report-section active">
+            <div class="section-header-block">
+                <div class="section-title-wrap">
+                    <div class="section-icon-badge">📋</div>
+                    <div>
+                        <h2 class="section-title-text">1. Resumen General <span class="section-title-tag">Consolidado</span></h2>
+                        <p class="section-desc-text">Visión ejecutiva de la operación mensual del Centro de Contacto (Septiembre 2026).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KPIs Principales -->
+            <div class="kpi-grid">
+                <div class="kpi-card glass-panel">
+                    <div class="kpi-header">
+                        <span class="kpi-label">Casos Atendidos</span>
+                        <span class="kpi-icon">📊</span>
+                    </div>
+                    <div class="kpi-value">1,826</div>
+                    <div class="kpi-sub">Total en 22 días hábiles</div>
+                    <span class="kpi-badge badge-cyan">83.0 casos/día prom.</span>
+                </div>
+
+                <div class="kpi-card glass-panel kpi-fuchsia">
+                    <div class="kpi-header">
+                        <span class="kpi-label">Servicio Líder</span>
+                        <span class="kpi-icon">⚡</span>
+                    </div>
+                    <div class="kpi-value">77.3%</div>
+                    <div class="kpi-sub">ABA ULTRA (1,411 casos)</div>
+                    <span class="kpi-badge badge-fuchsia">Fibra Óptica dominante</span>
+                </div>
+
+                <div class="kpi-card glass-panel kpi-gold">
+                    <div class="kpi-header">
+                        <span class="kpi-label">Resolución 1er Contacto</span>
+                        <span class="kpi-icon">🎯</span>
+                    </div>
+                    <div class="kpi-value">78.0%</div>
+                    <div class="kpi-sub">1,424 casos resueltos en 1er nivel</div>
+                    <span class="kpi-badge badge-gold">Meta operativa cumplida</span>
+                </div>
+
+                <div class="kpi-card glass-panel">
+                    <div class="kpi-header">
+                        <span class="kpi-label">Talento Humano</span>
+                        <span class="kpi-icon">👥</span>
+                    </div>
+                    <div class="kpi-value">19</div>
+                    <div class="kpi-sub">Ejecutivos de Atención Activos</div>
+                    <span class="kpi-badge badge-cyan">96.1 casos/ejecutivo prom.</span>
+                </div>
+            </div>
+
+            <!-- Narrative Card -->
+            <div class="glass-panel" style="padding: 24px; margin-bottom: 24px;">
+                <h3 style="font-family: var(--font-heading); color: var(--neon-cyan); margin-bottom: 14px; font-size: 1.15rem;">
+                    Resumen Ejecutivo de la Gestión
+                </h3>
+                <p style="color: var(--text-primary); font-size: 0.96rem; line-height: 1.7; margin-bottom: 14px;">
+                    Durante el período se registraron <strong>1,826 solicitudes</strong> atendidas por <strong>19 ejecutivos</strong> en <strong>22 días hábiles</strong> (promedio de 83.0 casos/día). El servicio <strong>ABA ULTRA</strong> concentra la gran mayoría de las interacciones (<strong>77.3%</strong>), seguido de ABA / VOZ (TRADICIONAL) con el 22.3%.
+                </p>
+                <p style="color: var(--text-primary); font-size: 0.96rem; line-height: 1.7; margin-bottom: 14px;">
+                    A diferencia de marzo —donde predominaban las fallas técnicas—, en septiembre la demanda se concentró en solicitudes de <strong>INFORMACIÓN (66.5%)</strong> y <strong>COMPRAS Y SOLICITUDES (24.2%)</strong>, ubicándose <strong>OTRO REQUERIMIENTO</strong> como la categoría principal con el <strong>82.3%</strong> de los casos (liderada por Detalle de Factura, Consultas/Llamada Caída y Cambio de Plan).
+                </p>
+                <div class="callout-box callout-fuchsia">
+                    <div class="callout-title">💡 Patrón Crítico de Demanda Semanal</div>
+                    Se identifica una marcada concentración de solicitudes al inicio de semana: los <strong>lunes</strong> (promedio de <strong>96.8 casos/día</strong>, +16.6% vs promedio general) y <strong>martes</strong> (promedio de <strong>87.4 casos/día</strong>) acumulan los mayores picos, alcanzando techos de <strong>115 casos (28-sep)</strong> y <strong>114 casos (14-sep)</strong>.
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 2: VOLUMEN POR SEGMENTO
+             ========================================== -->
+        <section id="sec-2" class="report-section">
+            <div class="section-header-block">
+                <div class="section-title-wrap">
+                    <div class="section-icon-badge">🏠</div>
+                    <div>
+                        <h2 class="section-title-text">2. Volumen de Casos por Segmento</h2>
+                        <p class="section-desc-text">Distribución del volumen según el tipo de cliente atendido.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="chart-card glass-panel">
+                    <div class="chart-card-header">
+                        <span class="chart-card-title">Distribución Porcentual</span>
+                        <span class="glass-pill">Total: 1,826 casos</span>
+                    </div>
+                    <div class="chart-container-box">
+                        <canvas id="chart-segmentos"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-panel" style="padding: 24px;">
+                    <h3 style="font-family: var(--font-heading); color: var(--neon-cyan); margin-bottom: 16px; font-size: 1.1rem;">
+                        Tabla Detallada de Segmentos
+                    </h3>
+                    <div class="table-responsive">
+                        <table class="glass-table">
+                            <thead>
+                                <tr>
+                                    <th>Segmento</th>
+                                    <th class="col-right">Casos</th>
+                                    <th class="col-right">Porcentaje</th>
+                                    <th style="width: 35%;">Distribución</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-segmentos"></tbody>
+                        </table>
+                    </div>
+                    <div class="callout-box callout-cyan">
+                        <div class="callout-title">🔍 Concentración Residencial Absoluta</div>
+                        El segmento <strong>RESIDENCIAL</strong> abarca el <strong>98.7%</strong> (1,803 casos) de toda la atención en el canal, reflejando el foco de atención hacia los hogares y sus necesidades de conectividad.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 3: TOP 5 PRODUCTOS
+             ========================================== -->
+        <section id="sec-3" class="report-section">
+            <div class="section-header-block">
+                <div class="section-title-wrap">
+                    <div class="section-icon-badge">⚡</div>
+                    <div>
+                        <h2 class="section-title-text">3. Top 5 de Productos con Mayor Demanda</h2>
+                        <p class="section-desc-text">Volumen de interacciones agrupado por producto y tecnología del servicio.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="chart-card glass-panel">
+                    <div class="chart-card-header">
+                        <span class="chart-card-title">Ranking de Productos (Casos)</span>
+                        <span class="glass-pill">Aba Ultra lidera con 77.3%</span>
+                    </div>
+                    <div class="chart-container-box">
+                        <canvas id="chart-top-productos"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-panel" style="padding: 24px;">
+                    <h3 style="font-family: var(--font-heading); color: var(--neon-cyan); margin-bottom: 16px; font-size: 1.1rem;">
+                        Tabla Comparativa de Productos
+                    </h3>
+                    <div class="table-responsive">
+                        <table class="glass-table">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th class="col-right">Casos</th>
+                                    <th class="col-right">%</th>
+                                    <th style="width: 35%;">Participación</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-top-productos"></tbody>
+                        </table>
+                    </div>
+                    <div class="callout-box callout-gold">
+                        <div class="callout-title">💡 Transición hacia Fibra Óptica</div>
+                        <strong>ABA ULTRA</strong> consolida el <strong>77.3% (1,411 casos)</strong> de la demanda total. El servicio de cobre tradicional (ABA / Voz) representa el <strong>22.3% (408 casos)</strong>, mostrando la rápida migración de la base de usuarios hacia la tecnología de ultra velocidad.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 4: TIPO DE SOLICITUD
+             ========================================== -->
+        <section id="sec-4" class="report-section">
+            <div class="section-header-block">
+                <div class="section-title-wrap">
+                    <div class="section-icon-badge">📂</div>
+                    <div>
+                        <h2 class="section-title-text">4. Distribución por Tipo de Solicitud</h2>
+                        <p class="section-desc-text">Clasificación según la naturaleza de la gestión del usuario.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="chart-card glass-panel">
+                    <div class="chart-card-header">
+                        <span class="chart-card-title">Tipos de Solicitud</span>
+                        <span class="glass-pill">66.5% Información</span>
+                    </div>
+                    <div class="chart-container-box">
+                        <canvas id="chart-tipos-solicitud"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-panel" style="padding: 24px;">
+                    <h3 style="font-family: var(--font-heading); color: var(--neon-cyan); margin-bottom: 16px; font-size: 1.1rem;">
+                        Matriz de Tipificaciones
+                    </h3>
+                    <div class="table-responsive">
+                        <table class="glass-table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo de Solicitud</th>
+                                    <th class="col-right">Casos</th>
+                                    <th class="col-right">%</th>
+                                    <th style="width: 35%;">Volumen</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-tipos-solicitud"></tbody>
+                        </table>
+                    </div>
+                    <div class="callout-box callout-cyan">
+                        <div class="callout-title">📊 Giro Operativo: De Averías a Consultas Comerciales</div>
+                        Las gestiones de <strong>INFORMACIÓN (66.5%)</strong> y <strong>COMPRAS Y SOLICITUDES (24.2%)</strong> suman el <strong>90.7%</strong> de la demanda. Las fallas técnicas directas representaron únicamente el <strong>7.5% (137 casos)</strong>, lo cual confirma la estabilidad física de la red y la oportunidad de liberar capacidad mediante autogestión.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 5: AVERÍAS Y FALLAS MÁS FRECUENTES
+             ========================================== -->
+        <section id="sec-5" class="report-section">
+            <div class="section-header-block">
+                <div class="section-title-wrap">
+                    <div class="section-icon-badge">🔧</div>
+                    <div>
+                        <h2 class="section-title-text">5. Análisis de Averías y Fallas más Frecuentes</h2>
+                        <p class="section-desc-text">Incidencia de averías físicas y desvío hacia otros requerimientos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="chart-card glass-panel">
+                    <div class="chart-card-header">
+                        <span class="chart-card-title">Tipificación en Columna de Averías</span>
+                        <span class="glass-pill">82.3% en Otro Requerimiento</span>
+                    </div>
+                    <div class="chart-container-box">
+                        <canvas id="chart-averias"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-panel" style="padding: 24px;">
+                    <h3 style="font-family: var(--font-heading); color: var(--neon-cyan); margin-bottom: 16px; font-size: 1.1rem;">
+                        Detalle de Incidencias Reportadas
+                    </h3>
+                    <div class="table-responsive">
+                        <table class="glass-table">
+                            <thead>
+                                <tr>
+                                    <th>Avería o Falla Reportada</th>
+                                    <th class="col-right">Casos</th>
+                                    <th class="col-right">%</th>
+                                    <th style="width: 30%;">Incidencia</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-averias"></tbody>
+                        </table>
+                    </div>
+                    <div class="callout-box callout-fuchsia">
+                        <div class="callout-title">⚠️ Baja Incidencia de Fallas Ópticas Físicas</div>
+                        Las fallas técnicas de fibra óptica registraron una incidencia muy baja: <strong>ABA ULTRA LOS ROJO (2.3% / 42 casos)</strong> y <strong>ABA ULTRA PON FIJO (1.9% / 34 casos)</strong>. Destaca la alta demanda de configuración para <strong>ABA TV GO (6.0% / 110 casos)</strong>.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 6: DETALLE "OTRO REQUERIMIENTO"
+             ========================================== -->
+        <section id="sec-6" class="report-section">
+            <div class="section-header-block">
+                <div class="section-title-wrap">
+                    <div class="section-icon-badge">🧾</div>
+                    <div>
+                        <h2 class="section-title-text">6. Análisis Detallado de "OTRO REQUERIMIENTO" (1,503 casos)</h2>
+                        <p class="section-desc-text">Desglose exhaustivo de la categoría que concentró el 82.3% de la operación mensual.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="chart-card glass-panel">
+                    <div class="chart-card-header">
+                        <span class="chart-card-title">Subcategorías de OTRO REQUERIMIENTO</span>
+                        <span class="glass-pill">Facturación lidera</span>
+                    </div>
+                    <div class="chart-container-box">
+                        <canvas id="chart-otro-req"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-panel" style="padding: 24px;">
+                    <h3 style="font-family: var(--font-heading); color: var(--neon-cyan); margin-bottom: 16px; font-size: 1.1rem;">
+                        Distribución de Subcategorías
+                    </h3>
+                    <div class="table-responsive">
+                        <table class="glass-table">
+                            <thead>
+                                <tr>
+                                    <th>Subcategoría</th>
+                                    <th class="col-right">Casos</th>
+                                    <th class="col-right">% en Otro</th>
+                                    <th class="col-right">Tot. Mes</th>
+                                    <th class="col-right">% Mes</th>
+                                    <th style="width: 25%;">Peso</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-otro-req"></tbody>
+                        </table>
+                    </div>
+                    <div class="callout-box callout-cyan">
+                        <div class="callout-title">📌 Visión Consolidada del Mes</div>
+                        Considerando las <strong>1,826 interacciones totales del mes</strong>, las principales subcategorías son:
+                        <strong>Detalle de Factura (274 casos / 15.0%)</strong>, 
+                        <strong>Consultas/Llamada Caída (219 casos / 12.0%)</strong>, 
+                        <strong>Plan de Servicio/Cambio de Plan (214 casos / 11.7%)</strong>, 
+                        <strong>Actualización de Datos (145 casos / 7.9%)</strong>, 
+                        <strong>Estatus de Reportes (135 casos / 7.4%)</strong> y 
+                        <strong>Solicitud ABA TV GO (134 casos / 7.3%)</strong>.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 7: COMPORTAMIENTO DIARIO & SEMANAL
+             ========================================== -->
+        <section id="sec-7" class="report-section">
+            <div class="section-header-block">
+                <div class="section-title-wrap">
+                    <div class="section-icon-badge">📅</div>
+                    <div>
+                        <h2 class="section-title-text">7. Análisis de Comportamiento del Servicio por Día</h2>
+                        <p class="section-desc-text">Patrones de tráfico por día de la semana y evolución cronológica semanal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7.1 Por Día de la Semana -->
+            <div class="glass-panel" style="padding: 24px; margin-bottom: 24px;">
+                <h3 style="font-family: var(--font-heading); color: var(--neon-cyan); margin-bottom: 16px; font-size: 1.15rem;">
+                    7.1 Patrón de Comportamiento por Día de la Semana
+                </h3>
+                <div class="grid-2col">
+                    <div class="chart-container-box" style="min-height: 280px;">
+                        <canvas id="chart-comportamiento-dia"></canvas>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="glass-table">
+                            <thead>
+                                <tr>
+                                    <th>Día</th>
+                                    <th class="col-right">Casos</th>
+                                    <th class="col-right">Prom./Día</th>
+                                    <th class="col-center">Días</th>
+                                    <th class="col-center">Ranking</th>
+                                    <th class="col-right">Desviación</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-comp-dia"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="callout-box callout-fuchsia" style="margin-top: 16px;">
+                    <div class="callout-title">🔥 Hallazgo Clave de Demanda Diaria</div>
+                    Los <strong>lunes</strong> presentan un incremento del <strong>+16.6%</strong> sobre el promedio general (<strong>96.8 vs 83.0 casos/día</strong>), mientras que los <strong>jueves (-11.7%)</strong> y <strong>viernes (-7.5%)</strong> registran una disminución sostenida en el volumen de solicitudes.
+                </div>
+            </div>
+
+            <!-- 7.2 Por Semana -->
+            <div class="glass-panel" style="padding: 24px;">
+                <h3 style="font-family: var(--font-heading); color: var(--neon-gold); margin-bottom: 16px; font-size: 1.15rem;">
+                    7.2 Patrón de Comportamiento por Semana
+                </h3>
+                <div class="grid-2col">
+                    <div class="chart-container-box" style="min-height: 280px;">
+                        <canvas id="chart-comportamiento-semana"></canvas>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="glass-table">
+                            <thead>
+                                <tr>
+                                    <th>Semana</th>
+                                    <th>Fechas</th>
+                                    <th class="col-right">Casos</th>
+                                    <th class="col-right">Prom. Diario</th>
+                                    <th>Observación</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-comp-semana"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="callout-box callout-gold" style="margin-top: 16px;">
+                    <div class="callout-title">🏔️ Picos Máximos del Período</div>
+                    La <strong>Semana 3 (14-sep al 18-sep)</strong> registró el <strong>PICO MÁXIMO</strong> con <strong>482 casos (+16.1%)</strong> y promedio de 96.4 casos/día. Los picos diarios absolutos ocurrieron el <strong>28-sep (115 casos)</strong> y el <strong>14-sep (114 casos)</strong>.
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 8: RANKING DE EJECUTIVOS
+             ========================================== -->
+        <section id="sec-8" class="report-section">
+            <div class="section-header-block">
+                <div class="section-title-wrap">
+                    <div class="section-icon-badge">🏆</div>
+                    <div>
+                        <h2 class="section-title-text">8. Ranking de Efectividad y Volumen de Ejecutivos</h2>
+                        <p class="section-desc-text">Desempeño individual de los 19 ejecutivos en volumen atendido y resolución al primer contacto (FCR).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Matriz Scatter Cuadrantes -->
+            <div class="glass-panel" style="padding: 24px; margin-bottom: 24px;">
+                <div class="chart-card-header">
+                    <span class="chart-card-title">Matriz Cuadrante: Volumen de Casos vs Efectividad FCR (%)</span>
+                    <span class="glass-pill">19 Ejecutivos Analizados</span>
+                </div>
+                <div class="chart-container-box" style="min-height: 340px;">
+                    <canvas id="chart-scatter-fcr"></canvas>
+                </div>
+            </div>
+
+            <!-- Controles de Filtro y Búsqueda -->
+            <div class="glass-panel" style="padding: 18px 24px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+                <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                    <input type="text" id="search-ejecutivo" class="form-input" placeholder="🔍 Buscar ejecutivo por nombre..." style="width: 260px;">
+                    
+                    <select id="filter-grupo" class="form-select" style="width: 180px;">
+                        <option value="todos">Todos los Grupos</option>
+                        <option value="Alta carga">Alta Carga (7)</option>
+                        <option value="Carga media">Carga Media (4)</option>
+                        <option value="Baja carga">Baja Carga (8)</option>
+                    </select>
+
+                    <select id="sort-ejecutivos" class="form-select" style="width: 220px;">
+                        <option value="fcr-desc">Ordenar: Mayor FCR %</option>
+                        <option value="fcr-asc">Ordenar: Menor FCR %</option>
+                        <option value="casos-desc">Ordenar: Mayor Volumen</option>
+                        <option value="casos-asc">Ordenar: Menor Volumen</option>
+                    </select>
+                </div>
+
+                <div class="header-badges">
+                    <span class="badge-tag badge-fuchsia">Alta Carga</span>
+                    <span class="badge-tag badge-cyan">Carga Media</span>
+                    <span class="badge-tag badge-gold">Baja Carga</span>
+                </div>
+            </div>
+
+            <!-- Tabla de Ejecutivos -->
+            <div class="glass-panel" style="padding: 24px;">
+                <div class="table-responsive">
+                    <table class="glass-table">
+                        <thead>
+                            <tr>
+                                <th class="col-center">Rank</th>
+                                <th>Ejecutivo</th>
+                                <th class="col-right">Casos Atendidos</th>
+                                <th class="col-right">Resueltos</th>
+                                <th class="col-right">No Resueltos</th>
+                                <th class="col-right">Efectividad FCR</th>
+                                <th class="col-center">Grupo de Carga</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-ejecutivos"></tbody>
+                    </table>
+                </div>
+
+                <div class="grid-2col" style="margin-top: 20px;">
+                    <div class="callout-box callout-cyan">
+                        <div class="callout-title">🥇 Top 3 en Efectividad (Volumen ≥ 50 casos)</div>
+                        1. <strong>Madyuri Montilla</strong> (97.44% | 76 resueltos de 78)<br>
+                        2. <strong>Armando Sánchez</strong> (88.59% | 163 resueltos de 184)<br>
+                        3. <strong>Marlene Briceño</strong> (87.65% | 71 resueltos de 81)
+                    </div>
+                    <div class="callout-box callout-gold">
+                        <div class="callout-title">👑 Balance Sobresaliente en Alto Volumen</div>
+                        <strong>Ligia Ramirez</strong> lidera la operación absoluta con <strong>310 casos atendidos (17.0% del total)</strong> y mantiene un sobresaliente <strong>86.77% de efectividad</strong> (269 casos resueltos en 1er contacto).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 9: ESTADO FINAL DE LOS CASOS
+             ========================================== -->
+        <section id="sec-9" class="report-section">
+            <div class="section-header-block">
+                <div class="section-title-wrap">
+                    <div class="section-icon-badge">🏁</div>
+                    <div>
+                        <h2 class="section-title-text">9. Estado Final de los Casos</h2>
+                        <p class="section-desc-text">Resolución de contactos en primer nivel, transferencias a SACAS y escalamientos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="chart-card glass-panel">
+                    <div class="chart-card-header">
+                        <span class="chart-card-title">Distribución de Estatus Final</span>
+                        <span class="glass-pill">78.0% Resuelto Efectivo</span>
+                    </div>
+                    <div class="chart-container-box">
+                        <canvas id="chart-estados-finales"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-panel" style="padding: 24px;">
+                    <h3 style="font-family: var(--font-heading); color: var(--neon-cyan); margin-bottom: 16px; font-size: 1.1rem;">
+                        Clasificación del Cierre Operativo
+                    </h3>
+                    <div class="table-responsive">
+                        <table class="glass-table">
+                            <thead>
+                                <tr>
+                                    <th>Estado Final</th>
+                                    <th class="col-right">Casos</th>
+                                    <th class="col-right">%</th>
+                                    <th style="width: 30%;">Distribución</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-estados-finales"></tbody>
+                        </table>
+                    </div>
+                    <div class="callout-box callout-cyan" style="margin-top: 18px;">
+                        <div class="callout-title">📑 Nota Comparativa con Criterio de Marzo</div>
+                        Bajo una agrupación estrictamente tripartita como la de marzo (donde las llamadas caídas se incluían dentro de los casos cerrados en 1er nivel), la distribución equivale a: 
+                        <strong>1,643 casos en 1er nivel (90.0%)</strong> [1,424 resueltos efectivos + 219 en Consultas/Llamada Caída], 
+                        <strong>157 en SACAS (8.6%)</strong> y 
+                        <strong>26 en Escalado/2do Nivel (1.4%)</strong>.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 10: HALLAZGOS CRÍTICOS
+             ========================================== -->
+        <section id="sec-10" class="report-section">
+            <div class="section-header-block">
+                <div class="section-title-wrap">
+                    <div class="section-icon-badge">🎯</div>
+                    <div>
+                        <h2 class="section-title-text">10. Hallazgos Críticos</h2>
+                        <p class="section-desc-text">Diagnóstico profundo de factores que impactan la productividad y la experiencia del cliente.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navegación por Subsecciones -->
+            <div class="tab-pills-nav">
+                <button class="pill-btn active" data-subtarget="sub-10-1">10.1 Desplazamiento Demanda</button>
+                <button class="pill-btn" data-subtarget="sub-10-2">10.2 Fibra Óptica & TV GO</button>
+                <button class="pill-btn" data-subtarget="sub-10-3">10.3 Llamadas Caídas</button>
+                <button class="pill-btn" data-subtarget="sub-10-4">10.4 Capacidad Ociosa</button>
+                <button class="pill-btn" data-subtarget="sub-10-5">10.5 Volumen vs Efectividad FCR</button>
+            </div>
+
+            <!-- Subsección 10.1 -->
+            <div id="sub-10-1" class="subtab-panel active glass-panel" style="padding: 24px;">
+                <h3 style="font-family: var(--font-heading); color: var(--neon-cyan); margin-bottom: 16px; font-size: 1.2rem;">
+                    10.1 Desplazamiento de la Demanda hacia Facturación, Trámites Comerciales y SACAS
+                </h3>
+                <div class="grid-3col">
+                    <div class="kpi-card glass-panel kpi-fuchsia">
+                        <div class="kpi-label">Casos en "Otro Requerimiento"</div>
+                        <div class="kpi-value">1,503</div>
+                        <div class="kpi-sub">82.3% del total analizado</div>
+                    </div>
+                    <div class="kpi-card glass-panel kpi-gold">
+                        <div class="kpi-label">Facturación, Pagos y Deuda</div>
+                        <div class="kpi-value">462</div>
+                        <div class="kpi-sub">25.3% del total del mes</div>
+                    </div>
+                    <div class="kpi-card glass-panel">
+                        <div class="kpi-label">Trámites Comerciales</div>
+                        <div class="kpi-value">614</div>
+                        <div class="kpi-sub">33.6% (Planes, Datos, TV Go, Retiros)</div>
+                    </div>
+                </div>
+                <div class="callout-box callout-cyan" style="margin-top: 18px;">
+                    <div class="callout-title">Hallazgo y Recomendación Operativa</div>
+                    <p>A diferencia de marzo (donde el 42.7% pasaba a "Pendiente/Incidente en SACAS"), en septiembre los casos vinculados a SACAS bajaron al <strong>8.6% (157 casos)</strong>, de los cuales <strong>135 corresponden a usuarios que llaman reiteradamente para consultar el estatus</strong> de reportes ya abiertos y solo 22 a nuevas creaciones.</p>
+                    <p style="margin-top: 10px;"><strong>Recomendación:</strong> Automatizar las consultas de Detalle de Factura, ID de Pago y Fecha de Facturación mediante canales de autogestión (IVR, SMS, Cati y portal web), liberando hasta un <strong>25% de la capacidad del Centro de Contacto</strong>.</p>
+                </div>
+            </div>
+
+            <!-- Subsección 10.2 -->
+            <div id="sub-10-2" class="subtab-panel glass-panel" style="padding: 24px; display: none;">
+                <h3 style="font-family: var(--font-heading); color: var(--neon-fuchsia); margin-bottom: 16px; font-size: 1.2rem;">
+                    10.2 Evolución de Averías de Fibra (LOS ROJO vs PON FIJO) y Demanda de ABA TV GO
+                </h3>
+                <div class="grid-2col">
+                    <div>
+                        <table class="glass-table">
+                            <thead>
+                                <tr>
+                                    <th>Avería / Requerimiento</th>
+                                    <th class="col-right">Casos</th>
+                                    <th class="col-right">%</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ABA TV GO</td>
+                                    <td class="col-right"><strong>110</strong></td>
+                                    <td class="col-right">6.0%</td>
+                                </tr>
+                                <tr>
+                                    <td>ABA / TELEFONO (TRADICIONAL)</td>
+                                    <td class="col-right"><strong>93</strong></td>
+                                    <td class="col-right">5.1%</td>
+                                </tr>
+                                <tr>
+                                    <td>ABA ULTRA LOS ROJO</td>
+                                    <td class="col-right"><strong>42</strong></td>
+                                    <td class="col-right">2.3%</td>
+                                </tr>
+                                <tr>
+                                    <td>ABA ULTRA PON FIJO</td>
+                                    <td class="col-right"><strong>34</strong></td>
+                                    <td class="col-right">1.9%</td>
+                                </tr>
+                                <tr class="row-highlight">
+                                    <td><strong>Diferencia LOS ROJO vs PON FIJO</strong></td>
+                                    <td class="col-right"><strong>+8 casos</strong></td>
+                                    <td class="col-right"><strong>+0.4 p.p.</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="callout-box callout-fuchsia">
+                        <div class="callout-title">Reducción Drástica en PON FIJO</div>
+                        <p>Se evidencia una reducción notable en casos tipificados como "PON FIJO" (<strong>34 casos / 1.9%</strong>) frente a marzo (1,024 casos / 43.6%). Esto ocurre porque las suspensiones administrativas por falta de pago y reconexión ahora se tipifican bajo subcategorías comerciales.</p>
+                        <p style="margin-top: 10px;"><strong>Recomendación ABA TV GO:</strong> Automatizar el envío de credenciales y activación mediante SMS/correo para absorber los 134 casos mensuales de TV GO.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsección 10.3 -->
+            <div id="sub-10-3" class="subtab-panel glass-panel" style="padding: 24px; display: none;">
+                <h3 style="font-family: var(--font-heading); color: var(--neon-gold); margin-bottom: 16px; font-size: 1.2rem;">
+                    10.3 Auditoría de Llamadas Caídas
+                </h3>
+                <div class="grid-2col">
+                    <div class="kpi-card glass-panel kpi-fuchsia">
+                        <div class="kpi-label">Subcategoría: Consultas / Llamada Caída</div>
+                        <div class="kpi-value">219 casos</div>
+                        <div class="kpi-sub">12.0% del total de interacciones</div>
+                    </div>
+                    <div class="kpi-card glass-panel kpi-gold">
+                        <div class="kpi-label">Caídas Explícitas Verificadas</div>
+                        <div class="kpi-value">98 casos</div>
+                        <div class="kpi-sub">5.4% con texto explícito de caída en notas</div>
+                    </div>
+                </div>
+                <div class="callout-box callout-gold" style="margin-top: 18px;">
+                    <div class="callout-title">Diagnóstico de Tipificación Errónea</div>
+                    <p>De los <strong>219 casos</strong> registrados bajo "CONSULTAS/LLAMADA CAIDA", <strong>98 casos (5.4%)</strong> corresponden a caídas reales de la comunicación. Los <strong>121 casos restantes</strong> son consultas generales que fueron forzadas en esa subcategoría por carecer de una opción separada en el formulario.</p>
+                    <p style="margin-top: 10px;"><strong>Acción Inmediata:</strong> Dividir la opción en "LLAMADA CAÍDA / DESCONEXIÓN" y "CONSULTAS GENERALES", y activar protocolo obligatorio de devolución de llamada.</p>
+                </div>
+            </div>
+
+            <!-- Subsección 10.4 -->
+            <div id="sub-10-4" class="subtab-panel glass-panel" style="padding: 24px; display: none;">
+                <h3 style="font-family: var(--font-heading); color: var(--neon-cyan); margin-bottom: 16px; font-size: 1.2rem;">
+                    10.4 Capacidad Ociosa del Talento Humano
+                </h3>
+                <div class="grid-2col">
+                    <div class="chart-container-box" style="min-height: 280px;">
+                        <canvas id="chart-capacidad-talento"></canvas>
+                    </div>
+                    <div>
+                        <table class="glass-table">
+                            <thead>
+                                <tr>
+                                    <th>Grupo</th>
+                                    <th class="col-center">Ejecutivos</th>
+                                    <th class="col-right">Casos</th>
+                                    <th class="col-right">Prom./Ejec.</th>
+                                    <th class="col-right">Desviación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="badge-tag badge-fuchsia">Alta carga</span></td>
+                                    <td class="col-center">7</td>
+                                    <td class="col-right">1,392</td>
+                                    <td class="col-right">198.9</td>
+                                    <td class="col-right" style="color: var(--neon-fuchsia);">+107%</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge-tag badge-cyan">Carga media</span></td>
+                                    <td class="col-center">4</td>
+                                    <td class="col-right">306</td>
+                                    <td class="col-right">76.5</td>
+                                    <td class="col-right" style="color: var(--neon-cyan);">-20%</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge-tag badge-gold">Baja carga</span></td>
+                                    <td class="col-center">8</td>
+                                    <td class="col-right">128</td>
+                                    <td class="col-right">16.0</td>
+                                    <td class="col-right" style="color: var(--neon-gold);">-83%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="callout-box callout-gold" style="margin-top: 14px;">
+                            <div class="callout-title">Oportunidad de Absorción: +641 Casos (+35%)</div>
+                            Los 8 ejecutivos de baja carga atienden solo 16 casos promedio en el mes. Si alcanzaran el promedio ideal (96.1 casos), absorberían <strong>+641 casos adicionales</strong> sin incrementar nómina.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsección 10.5 -->
+            <div id="sub-10-5" class="subtab-panel glass-panel" style="padding: 24px; display: none;">
+                <h3 style="font-family: var(--font-heading); color: var(--neon-cyan); margin-bottom: 16px; font-size: 1.2rem;">
+                    10.5 Volumen vs Efectividad FCR (Resolución al Primer Contacto)
+                </h3>
+                <div class="grid-2col">
+                    <div class="chart-container-box" style="min-height: 280px;">
+                        <canvas id="chart-brecha-fcr"></canvas>
+                    </div>
+                    <div>
+                        <div class="callout-box callout-cyan">
+                            <div class="callout-title">Brecha Operativa de 16.5 Puntos Porcentuales</div>
+                            El <strong>Grupo Líder (4 ejecutivos)</strong> resuelve el <strong>88.5%</strong> de sus casos en 1er contacto (579 de 653), mientras que el <strong>Resto del equipo</strong> resuelve el <strong>72.0%</strong> (845 de 1,173).
+                        </div>
+                        <div class="callout-box callout-fuchsia" style="margin-top: 14px;">
+                            <div class="callout-title">Potencial de Resolución: +193 Casos</div>
+                            Si el resto del equipo eleva su efectividad al estándar del grupo líder (88.5%), se resolverían <strong>~193 casos adicionales en 1er contacto</strong>, mitigando el escalamiento a SACAS y la reiteración de llamadas.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 11: CONCLUSIONES Y RECOMENDACIONES
+             ========================================== -->
+        <section id="sec-11" class="report-section">
+            <div class="section-header-block">
+                <div class="section-title-wrap">
+                    <div class="section-icon-badge">💡</div>
+                    <div>
+                        <h2 class="section-title-text">11. Conclusiones y Recomendaciones Operativas</h2>
+                        <p class="section-desc-text">Plan de acción estratégico priorizado y modelo de asignación de dotación por día.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11.1 Matriz de Priorización -->
+            <div class="glass-panel" style="padding: 24px; margin-bottom: 24px;">
+                <h3 style="font-family: var(--font-heading); color: var(--neon-cyan); margin-bottom: 16px; font-size: 1.15rem;">
+                    11.1 Matriz de Priorización de Hallazgos Críticos
+                </h3>
+                <div class="table-responsive">
+                    <table class="glass-table">
+                        <thead>
+                            <tr>
+                                <th class="col-center">Prioridad</th>
+                                <th>Hallazgo</th>
+                                <th>Impacto Detectado</th>
+                                <th>Recomendación Clave</th>
+                                <th class="col-center">Beneficio Estimado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-prioridades"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 11.2 Dotación Recomendada -->
+            <div class="glass-panel" style="padding: 24px;">
+                <h3 style="font-family: var(--font-heading); color: var(--neon-gold); margin-bottom: 16px; font-size: 1.15rem;">
+                    11.2 Recomendaciones de Dotación y Turnos por Día de la Semana
+                </h3>
+                <div class="table-responsive">
+                    <table class="glass-table">
+                        <thead>
+                            <tr>
+                                <th>Días</th>
+                                <th>Nivel de Demanda</th>
+                                <th>Dotación Recomendada</th>
+                                <th>Enfoque Operativo Sugerido</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-dotacion"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 12: DATOS CLAVE DEL PERÍODO
+             ========================================== -->
+        <section id="sec-12" class="report-section">
+            <div class="section-header-block">
+                <div class="section-title-wrap">
+                    <div class="section-icon-badge">📌</div>
+                    <div>
+                        <h2 class="section-title-text">12. Datos Clave del Período</h2>
+                        <p class="section-desc-text">Tablero maestro de los 20 indicadores e hitos operativos del informe.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de 20 KPIs -->
+            <div id="grid-datos-clave" class="kpi-grid"></div>
+
+            <div class="glass-panel" style="padding: 24px; margin-top: 24px;">
+                <h3 style="font-family: var(--font-heading); color: var(--neon-cyan); margin-bottom: 12px; font-size: 1.1rem;">
+                    ⚠️ Sugerencia Técnica de Captura de Datos
+                </h3>
+                <p style="color: var(--text-primary); line-height: 1.7; font-size: 0.94rem;">
+                    Para efectos de compilar y procesar los datos y generar las métricas de forma efectiva y ordenada en los siguientes períodos, se sugiere modificar la plantilla de registro en Excel incorporando <strong>validación de datos obligatoria para el Estatus Final</strong> y <strong>restringiendo el texto libre en el campo Número de Reporte en SACAS</strong> para evitar ambigüedades entre llamadas caídas y consultas.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts de la Aplicación -->
+    <script src="js/data.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
