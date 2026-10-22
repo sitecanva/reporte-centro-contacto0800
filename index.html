@@ -560,18 +560,18 @@
             </div>
 
             <!-- Controles de Filtro y Búsqueda -->
-            <div class="glass-panel" style="padding: 18px 24px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
-                <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-                    <input type="text" id="search-ejecutivo" class="form-input" placeholder="🔍 Buscar ejecutivo por nombre..." style="width: 260px;">
+            <div class="glass-panel exec-controls-panel">
+                <div class="exec-controls-inputs">
+                    <input type="text" id="search-ejecutivo" class="form-input exec-control-item" placeholder="🔍 Buscar ejecutivo por nombre...">
                     
-                    <select id="filter-grupo" class="form-select" style="width: 180px;">
+                    <select id="filter-grupo" class="form-select exec-control-item">
                         <option value="todos">Todos los Grupos</option>
                         <option value="Alta carga">Alta Carga (7)</option>
                         <option value="Carga media">Carga Media (4)</option>
                         <option value="Baja carga">Baja Carga (8)</option>
                     </select>
 
-                    <select id="sort-ejecutivos" class="form-select" style="width: 220px;">
+                    <select id="sort-ejecutivos" class="form-select exec-control-item">
                         <option value="fcr-desc">Ordenar: Mayor FCR %</option>
                         <option value="fcr-asc">Ordenar: Menor FCR %</option>
                         <option value="casos-desc">Ordenar: Mayor Volumen</option>
@@ -579,7 +579,7 @@
                     </select>
                 </div>
 
-                <div class="header-badges">
+                <div class="header-badges exec-badges">
                     <span class="badge-tag badge-fuchsia">Alta Carga</span>
                     <span class="badge-tag badge-cyan">Carga Media</span>
                     <span class="badge-tag badge-gold">Baja Carga</span>
