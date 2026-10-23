@@ -136,14 +136,6 @@
 
   <!-- Main Viewport for Flipbook -->
   <main class="main-stage">
-    <!-- Floating Side Nav Buttons -->
-    <button id="nav-prev" class="nav-arrow prev" title="Página Anterior (Flecha Izq / RePág)">
-      <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-    </button>
-    <button id="nav-next" class="nav-arrow next" title="Página Siguiente (Flecha Der / AvPág)">
-      <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-    </button>
-
     <!-- In-Stage Mouse Wheel Zoom Floating HUD -->
     <div id="stage-zoom-hud" class="stage-zoom-hud">
       <span class="zoom-hud-label">🔍 Zoom: <strong id="hud-zoom-val">100%</strong></span>
@@ -263,11 +255,11 @@
     </div>
 
     <div class="toolbar-right">
+      <span id="mode-indicator" class="mode-indicator">Modo: Doble Página</span>
       <button id="btn-next" class="btn-icon nav-btn-toolbar" title="Página Siguiente">
         <span class="btn-text">Siguiente</span>
         <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
       </button>
-      <span id="mode-indicator" class="mode-indicator">Modo: Doble Página</span>
       <button id="btn-view-mode" class="btn-icon" style="display:none;" title="Alternar Vista">
         <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 16H5V5h6v14zm8 0h-6V5h6v14z"/></svg>
       </button>

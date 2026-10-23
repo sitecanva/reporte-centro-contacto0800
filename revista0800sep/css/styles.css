@@ -563,55 +563,9 @@ body.light-theme .doc-name {
   z-index: 12;
 }
 
-/* Side Navigation Arrows */
+/* Side Navigation Arrows removed as per design request */
 .nav-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--bg-surface-elevated);
-  border: 1px solid var(--border-color);
-  color: var(--text-main);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 50;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-  transition: all var(--transition-fast);
-  outline: none;
-}
-
-.nav-arrow:hover {
-  background: var(--accent-blue);
-  border-color: var(--accent-cyan);
-  color: #fff;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 0 25px rgba(0, 210, 255, 0.45);
-}
-
-.nav-arrow.prev {
-  left: 20px;
-}
-
-.nav-arrow.next {
-  right: 20px;
-}
-
-.nav-arrow:disabled {
-  opacity: 0.25;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.nav-arrow svg {
-  width: 24px;
-  height: 24px;
-  fill: currentColor;
+  display: none !important;
 }
 
 /* Bottom Control Toolbar */
@@ -627,6 +581,53 @@ body.light-theme .doc-name {
   padding: 0 28px;
   z-index: 90;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Bottom Toolbar Navigation Buttons (Constantly Visible) */
+.nav-btn-toolbar {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: rgba(10, 24, 58, 0.75);
+  border: 1px solid rgba(0, 180, 255, 0.35);
+  color: #e0eeff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  outline: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.nav-btn-toolbar:hover {
+  background: rgba(0, 140, 255, 0.25);
+  border-color: #00e5ff;
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.nav-btn-toolbar:active {
+  transform: translateY(0) scale(0.97);
+  background: rgba(0, 140, 255, 0.35);
+}
+
+.nav-btn-toolbar:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(10, 20, 40, 0.35);
+}
+
+.nav-btn-toolbar svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
 }
 
 .toolbar-left,
@@ -1055,15 +1056,9 @@ body.light-theme .doc-name {
     font-size: 12px;
   }
   .main-stage {
-    padding: 8px 36px;
+    padding: 8px 12px;
   }
-  .nav-arrow.prev {
-    left: 6px;
-  }
-  .nav-arrow.next {
-    right: 6px;
-  }
-  .btn-icon span {
+  .btn-icon:not(.nav-btn-toolbar) span {
     display: none;
   }
   .btn-icon {
@@ -1106,52 +1101,7 @@ body.light-theme .doc-name {
   .main-stage {
     padding: 4px 2px;
   }
-  /* Visible Floating Side Arrows on Phones with optimized touch target, high opacity dark blue, crisp white icon, cyan glow & auto-hide */
-  .nav-arrow {
-    display: flex !important;
-    width: 44px;
-    height: 44px;
-    background: rgba(5, 14, 38, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1.5px solid #00e5ff;
-    color: #ffffff;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.75), 0 0 16px rgba(0, 229, 255, 0.65), inset 0 0 8px rgba(0, 229, 255, 0.25);
-    z-index: 65;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-50%) scale(0.9);
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-  }
-  .nav-arrow.mobile-visible {
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    transform: translateY(-50%) scale(1) !important;
-  }
-  .nav-arrow.mobile-hidden {
-    opacity: 0 !important;
-    pointer-events: none !important;
-    transform: translateY(-50%) scale(0.85) !important;
-  }
-  .nav-arrow:disabled {
-    opacity: 0 !important;
-    pointer-events: none !important;
-    transform: translateY(-50%) scale(0.8) !important;
-  }
-  .nav-arrow.prev {
-    left: 8px;
-  }
-  .nav-arrow.next {
-    right: 8px;
-  }
-  .nav-arrow svg {
-    width: 22px;
-    height: 22px;
-    fill: #ffffff !important;
-    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
-  }
-
-  /* Optimized Mobile Bottom Toolbar */
+  /* Bottom Navigation Buttons in Mobile Toolbar: constantly visible matching design */
   .app-toolbar {
     height: 64px;
     padding: 0 10px;
@@ -1170,40 +1120,43 @@ body.light-theme .doc-name {
     display: none !important;
   }
 
-  /* Mobile Navigation Buttons in Toolbar */
   .nav-btn-toolbar {
-    width: 42px;
-    height: 42px;
-    padding: 0;
-    border-radius: 50%;
-    background: rgba(12, 26, 62, 0.92);
-    border: 1.5px solid rgba(0, 229, 255, 0.55);
-    color: #00e5ff;
-    display: flex !important;
+    display: inline-flex !important;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 229, 255, 0.25);
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 6px;
+    background: rgba(10, 24, 58, 0.85);
+    border: 1px solid rgba(0, 180, 255, 0.35);
+    color: #e0eeff;
+    font-size: 12px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     cursor: pointer;
     touch-action: manipulation;
-  }
-  .nav-btn-toolbar:active {
-    transform: scale(0.92);
-    background: rgba(0, 136, 255, 0.35);
-    border-color: #00e5ff;
-    box-shadow: 0 0 16px rgba(0, 229, 255, 0.6);
-  }
-  .nav-btn-toolbar:disabled {
-    opacity: 0.3;
-    pointer-events: none;
-    border-color: rgba(255, 255, 255, 0.15);
-  }
-  .nav-btn-toolbar svg {
-    width: 24px;
-    height: 24px;
-    fill: currentColor;
+    white-space: nowrap;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   .nav-btn-toolbar .btn-text {
-    display: none !important;
+    display: inline !important;
+  }
+  .nav-btn-toolbar svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+  .nav-btn-toolbar:active {
+    transform: scale(0.96);
+    background: rgba(0, 136, 255, 0.35);
+    border-color: #00e5ff;
+  }
+  .nav-btn-toolbar:disabled {
+    opacity: 0.3 !important;
+    pointer-events: none;
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(10, 20, 40, 0.35);
   }
 
   /* Mobile Scrubber & Counter */
@@ -1305,22 +1258,7 @@ body.light-theme .doc-name {
     padding: 0 12px;
   }
   .main-stage {
-    padding: 2px 28px;
-  }
-  .nav-arrow {
-    width: 32px;
-    height: 32px;
-  }
-  .nav-arrow.prev {
-    left: 4px;
-  }
-  .nav-arrow.next {
-    right: 4px;
-  }
-  .nav-arrow svg {
-    width: 16px;
-    height: 16px;
-    fill: #ffffff !important;
+    padding: 2px 8px;
   }
   .help-toast {
     top: 42px;

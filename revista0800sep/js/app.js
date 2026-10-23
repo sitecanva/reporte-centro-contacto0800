@@ -9,8 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const scrubberEl = document.getElementById('page-scrubber');
   const prevBtn = document.getElementById('btn-prev');
   const nextBtn = document.getElementById('btn-next');
-  const prevNavBtn = document.getElementById('nav-prev');
-  const nextNavBtn = document.getElementById('nav-next');
   const tocModal = document.getElementById('toc-modal');
   const tocOpenBtn = document.getElementById('btn-toc');
   const tocCloseBtn = document.getElementById('btn-close-toc');
@@ -328,7 +326,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageIndex = e.data;
     sound.play();
     updateUI(pageIndex);
-    showMobileArrowsTemporary(3500);
     if (autoplayInterval) resetAutoplayProgress();
 
     // Auto-dismiss help toast once user flips away from the cover
@@ -340,14 +337,12 @@ document.addEventListener('DOMContentLoaded', () => {
   pageFlip.on('changeOrientation', (e) => {
     updateOrientationUI(e.data);
     adjustFlipbookSize();
-    showMobileArrowsTemporary(3500);
   });
 
   pageFlip.on('init', (e) => {
     updateUI(0);
     updateOrientationUI(pageFlip.getOrientation());
     adjustFlipbookSize();
-    showMobileArrowsTemporary(4000);
   });
 
   function updateOrientationUI(orientation) {
@@ -396,9 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const isLast = pageIndex >= TOTAL_PAGES - 1;
 
     prevBtn.disabled = isFirst;
-    prevNavBtn.disabled = isFirst;
     nextBtn.disabled = isLast;
-    nextNavBtn.disabled = isLast;
 
     // Highlight thumbnail
     document.querySelectorAll('.thumb-card').forEach((card, idx) => {
@@ -423,70 +416,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Floating Side Arrows: Auto-show for seconds on mobile, then smoothly fade out to not obstruct reading
-  let mobileArrowsTimer = null;
-  const mobileArrows = [prevNavBtn, nextNavBtn];
-
-  function showMobileArrowsTemporary(duration = 3500) {
-    if (window.innerWidth > 768) {
-      mobileArrows.forEach(btn => {
-        btn.classList.remove('mobile-hidden');
-        btn.classList.remove('mobile-visible');
-      });
-      return;
-    }
-
-    mobileArrows.forEach(btn => {
-      btn.classList.remove('mobile-hidden');
-      btn.classList.add('mobile-visible');
-    });
-
-    clearTimeout(mobileArrowsTimer);
-    mobileArrowsTimer = setTimeout(() => {
-      if (window.innerWidth <= 768) {
-        mobileArrows.forEach(btn => {
-          btn.classList.remove('mobile-visible');
-          btn.classList.add('mobile-hidden');
-        });
-      }
-    }, duration);
-  }
-
-  // Any screen tap / touch in mobile reveals floating arrows temporarily
-  document.addEventListener('touchstart', (e) => {
-    showMobileArrowsTemporary(3500);
-  }, { passive: true });
-
-  document.addEventListener('pointerdown', (e) => {
-    if (window.innerWidth <= 768) {
-      showMobileArrowsTemporary(3500);
-    }
-  }, { passive: true });
-
-  // Navigation handlers
+  // Bottom Toolbar Navigation handlers (constantly visible and active)
   prevBtn.addEventListener('click', () => {
     stageZoom = 1.0;
     applyStageZoom();
     pageFlip.flipPrev();
-    showMobileArrowsTemporary(3500);
-  });
-  prevNavBtn.addEventListener('click', () => {
-    stageZoom = 1.0;
-    applyStageZoom();
-    pageFlip.flipPrev();
-    showMobileArrowsTemporary(3500);
   });
   nextBtn.addEventListener('click', () => {
     stageZoom = 1.0;
     applyStageZoom();
     pageFlip.flipNext();
-    showMobileArrowsTemporary(3500);
-  });
-  nextNavBtn.addEventListener('click', () => {
-    stageZoom = 1.0;
-    applyStageZoom();
-    pageFlip.flipNext();
-    showMobileArrowsTemporary(3500);
   });
 
   // Scrubber slider (real-time preview & debounced flip for ultra smoothness and sensitivity)
