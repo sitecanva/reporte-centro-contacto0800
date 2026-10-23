@@ -803,15 +803,22 @@
             </div>
 
             <!-- Subsección 10.4 -->
-            <div id="sub-10-4" class="subtab-panel glass-panel" style="padding: 24px; display: none;">
-                <h3 style="font-family: var(--font-heading); color: var(--neon-cyan); margin-bottom: 16px; font-size: 1.2rem;">
-                    10.4 Capacidad Ociosa del Talento Humano
-                </h3>
-                <div class="grid-2col">
-                    <div class="chart-container-box chart-box-md">
-                        <canvas id="chart-capacidad-talento"></canvas>
+            <div id="sub-10-4" class="subtab-panel glass-panel" style="padding: 24px;">
+                <div class="subtab-header">
+                    <h3 class="subtab-title">10.4 Capacidad Ociosa del Talento Humano</h3>
+                    <p class="subtab-subtitle">Distribución del volumen mensual entre grupos de ejecutivos vs. meta homogénea</p>
+                </div>
+                <div class="grid-2col cap-talento-grid">
+                    <div class="chart-card glass-panel" style="padding: 18px; margin-bottom: 0;">
+                        <div class="chart-card-header">
+                            <span class="chart-card-title">Carga Real vs Ideal</span>
+                            <span class="glass-pill">Casos / Ejecutivo</span>
+                        </div>
+                        <div class="chart-container-box chart-box-md">
+                            <canvas id="chart-capacidad-talento"></canvas>
+                        </div>
                     </div>
-                    <div>
+                    <div class="cap-talento-data">
                         <div class="table-responsive">
                             <table class="glass-table table-capacidad">
                                 <thead>
@@ -850,7 +857,7 @@
                         </div>
                         <div class="callout-box callout-gold" style="margin-top: 14px;">
                             <div class="callout-title">Oportunidad de Absorción: +641 Casos (+35%)</div>
-                            Los 8 ejecutivos de baja carga atienden solo 16 casos promedio en el mes. Si alcanzaran el promedio ideal (96.1 casos), absorberían <strong>+641 casos adicionales</strong> sin incrementar nómina.
+                            <p>Los 8 ejecutivos de baja carga atienden solo 16 casos promedio en el mes. Si alcanzaran el promedio ideal (96.1 casos), absorberían <strong>+641 casos adicionales</strong> sin incrementar nómina.</p>
                         </div>
                     </div>
                 </div>

@@ -95,6 +95,10 @@ const App = {
 
                     // Forzar ajuste de tamaño en gráficos que estaban ocultos
                     setTimeout(() => {
+                        if (window.AppCharts && AppCharts.instances) {
+                            if (AppCharts.instances.capacidad) AppCharts.instances.capacidad.resize();
+                            if (AppCharts.instances.brechaFCR) AppCharts.instances.brechaFCR.resize();
+                        }
                         window.dispatchEvent(new Event('resize'));
                     }, 50);
                 });

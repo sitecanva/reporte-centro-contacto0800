@@ -547,7 +547,8 @@ const AppCharts = {
         const ctxCapacidad = document.getElementById('chart-capacidad-talento')?.getContext('2d');
         if (ctxCapacidad) {
             const grupos = REPORT_DATA.capacidadTalento.grupos;
-            const labels = grupos.map(g => [g.tipo, `(${g.cantidad} ejecutivos)`]);
+            const isMobile = window.innerWidth < 640;
+            const labels = grupos.map(g => isMobile ? [g.tipo, `(${g.cantidad} ejec.)`] : [g.tipo, `(${g.cantidad} ejecutivos)`]);
             const casosReales = grupos.map(g => g.casos);
             const promedioReal = grupos.map(g => g.promedio);
             const promedioIdeal = [96.1, 96.1, 96.1];
@@ -558,17 +559,17 @@ const AppCharts = {
                     labels,
                     datasets: [
                         {
-                            label: 'Promedio Real por Ejecutivo',
+                            label: isMobile ? 'Prom. Real' : 'Promedio Real por Ejecutivo',
                             data: promedioReal,
                             backgroundColor: ['#FF00A8', '#66FFFF', '#FFED00'],
                             borderRadius: 6
                         },
                         {
-                            label: 'Promedio Ideal Homogéneo (96.1)',
+                            label: isMobile ? 'Meta Homogénea (96.1)' : 'Promedio Ideal Homogéneo (96.1)',
                             data: promedioIdeal,
                             type: 'line',
                             borderColor: '#ffffff',
-                            borderDash: [6, 6],
+                            borderDash: [5, 5],
                             borderWidth: 2,
                             pointRadius: 4,
                             fill: false
@@ -576,7 +577,29 @@ const AppCharts = {
                     ]
                 },
                 options: {
-                    ...this.getCommonOptions('Comparación de Carga Real vs Ideal (Casos/Ejecutivo)'),
+                    ...this.getCommonOptions(),
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#9cb3d3',
+                                font: { family: "'Montserrat', system-ui, sans-serif", size: isMobile ? 10 : 11 },
+                                boxWidth: isMobile ? 10 : 14,
+                                padding: isMobile ? 8 : 12
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                afterLabel: function(ctx) {
+                                    const g = grupos[ctx.dataIndex];
+                                    if (ctx.datasetIndex === 0) {
+                                        return [`Casos Totales: ${g.casos.toLocaleString()}`, `Desviación: ${g.desviacion}`];
+                                    }
+                                    return '';
+                                }
+                            }
+                        }
+                    },
                     scales: {
                         x: {
                             grid: { color: 'rgba(102, 255, 255, 0.08)' },
@@ -584,11 +607,17 @@ const AppCharts = {
                                 color: '#9cb3d3',
                                 autoSkip: false,
                                 maxRotation: 0,
-                                font: { family: "'Montserrat', system-ui, sans-serif", size: window.innerWidth < 640 ? 9.5 : 11 }
+                                font: { family: "'Montserrat', system-ui, sans-serif", size: isMobile ? 9 : 11 }
                             }
                         },
                         y: {
                             grid: { color: 'rgba(102, 255, 255, 0.08)' },
+                            title: {
+                                display: true,
+                                text: 'Casos / Ejecutivo',
+                                color: '#66FFFF',
+                                font: { family: "'Montserrat', system-ui, sans-serif", size: isMobile ? 9.5 : 11 }
+                            },
                             ticks: { color: '#9cb3d3', font: { family: "'Montserrat', system-ui, sans-serif", size: 10 } }
                         }
                     }
