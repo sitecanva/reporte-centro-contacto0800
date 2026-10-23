@@ -71,10 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
     maxShadowOpacity: 0.8,
     showCover: true,
     mobileScrollSupport: false,
-    flippingTime: 750,
+    flippingTime: 480,
     showPageCorners: true,
     useMouseEvents: true,
-    swipeDistance: 20
+    swipeDistance: 10
   });
 
   // Load pages from existing HTML page elements
@@ -362,7 +362,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  let scrubberTimer = null;
+  let isScrubbing = false;
+
+  function updateScrubberCounter(pageVal) {
+    const p = Math.max(1, Math.min(TOTAL_PAGES, parseInt(pageVal, 10)));
+    pageCounterEl.innerHTML = `Página <span class="page-badge">${p}</span> de ${TOTAL_PAGES}`;
+  }
+
   function updateUI(pageIndex) {
+    if (isScrubbing) return;
     const currentPage = pageIndex + 1;
     const orientation = pageFlip.getOrientation();
     const isCurrentSingle = isPhonePortrait() || isSingleMode || (!isPhoneLandscape() && orientation === 'portrait');
@@ -433,13 +442,68 @@ document.addEventListener('DOMContentLoaded', () => {
     pageFlip.flipNext();
   });
 
-  // Scrubber slider
+  // Scrubber slider (real-time preview & debounced flip for ultra smoothness and sensitivity)
   scrubberEl.addEventListener('input', (e) => {
+    isScrubbing = true;
     stageZoom = 1.0;
     applyStageZoom();
-    const targetPage = parseInt(e.target.value, 10) - 1;
-    pageFlip.flip(targetPage);
+    const val = parseInt(e.target.value, 10);
+    updateScrubberCounter(val);
+
+    clearTimeout(scrubberTimer);
+    scrubberTimer = setTimeout(() => {
+      const targetIndex = val - 1;
+      if (pageFlip.getCurrentPageIndex() !== targetIndex) {
+        pageFlip.flip(targetIndex);
+      }
+    }, 75);
   });
+
+  scrubberEl.addEventListener('change', (e) => {
+    clearTimeout(scrubberTimer);
+    isScrubbing = false;
+    const targetIndex = parseInt(e.target.value, 10) - 1;
+    if (pageFlip.getCurrentPageIndex() !== targetIndex) {
+      pageFlip.flip(targetIndex);
+    }
+  });
+
+  scrubberEl.addEventListener('touchend', () => {
+    setTimeout(() => { isScrubbing = false; }, 150);
+  });
+  scrubberEl.addEventListener('pointerup', () => {
+    setTimeout(() => { isScrubbing = false; }, 150);
+  });
+
+  // Touch Swipe Gesture Enhancement for mobile devices
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
+
+  mainStage.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1 && stageZoom <= 1.0) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchStartTime = Date.now();
+    }
+  }, { passive: true });
+
+  mainStage.addEventListener('touchend', (e) => {
+    if (e.changedTouches.length === 1 && stageZoom <= 1.0) {
+      const deltaX = e.changedTouches[0].clientX - touchStartX;
+      const deltaY = e.changedTouches[0].clientY - touchStartY;
+      const elapsed = Date.now() - touchStartTime;
+
+      // Detect horizontal flick / swipe (> 25px horizontal and under 450ms)
+      if (Math.abs(deltaX) > 25 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2 && elapsed < 450) {
+        if (deltaX < 0) {
+          pageFlip.flipNext();
+        } else {
+          pageFlip.flipPrev();
+        }
+      }
+    }
+  }, { passive: true });
 
   // Table of Contents Modal Generation & Handlers
   const tocGrid = document.getElementById('toc-grid');
