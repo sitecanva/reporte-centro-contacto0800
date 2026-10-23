@@ -90,4 +90,5 @@ reporte-centro-contacto/
 
 ## 🔗 Referencia Oficial
 
-- Documento de trabajo: [Informe Operativo en Google Docs](https://docs.google.com/document/d/1x3r3bTbMh5RCe4ckTuUSEXqVJm4i6YnuiOlVqdtpgj0/edit?usp=sharing)
+- Enlace del botón Exportar: [Presentación en Canva](https://canva.link/vjscbjd41ubd24b)
+- Documento de trabajo de referencia: [Informe Operativo en Google Docs](https://docs.google.com/document/d/1x3r3bTbMh5RCe4ckTuUSEXqVJm4i6YnuiOlVqdtpgj0/edit?usp=sharing)
