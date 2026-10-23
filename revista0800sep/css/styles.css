@@ -1106,27 +1106,49 @@ body.light-theme .doc-name {
   .main-stage {
     padding: 4px 2px;
   }
-  /* Visible Floating Side Arrows on Phones with optimized touch target */
+  /* Visible Floating Side Arrows on Phones with optimized touch target, high opacity dark blue, crisp white icon, cyan glow & auto-hide */
   .nav-arrow {
     display: flex !important;
-    width: 40px;
-    height: 40px;
-    background: rgba(8, 20, 52, 0.88);
-    border: 1.5px solid rgba(0, 229, 255, 0.65);
-    color: #00e5ff;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 229, 255, 0.35);
+    width: 44px;
+    height: 44px;
+    background: rgba(5, 14, 38, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid #00e5ff;
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.75), 0 0 16px rgba(0, 229, 255, 0.65), inset 0 0 8px rgba(0, 229, 255, 0.25);
     z-index: 65;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-50%) scale(0.9);
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+  .nav-arrow.mobile-visible {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(-50%) scale(1) !important;
+  }
+  .nav-arrow.mobile-hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(-50%) scale(0.85) !important;
+  }
+  .nav-arrow:disabled {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(-50%) scale(0.8) !important;
   }
   .nav-arrow.prev {
-    left: 6px;
+    left: 8px;
   }
   .nav-arrow.next {
-    right: 6px;
+    right: 8px;
   }
   .nav-arrow svg {
-    width: 20px;
-    height: 20px;
-    fill: #00e5ff;
+    width: 22px;
+    height: 22px;
+    fill: #ffffff !important;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
   }
 
   /* Optimized Mobile Bottom Toolbar */
@@ -1286,8 +1308,8 @@ body.light-theme .doc-name {
     padding: 2px 28px;
   }
   .nav-arrow {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
   }
   .nav-arrow.prev {
     left: 4px;
@@ -1296,8 +1318,9 @@ body.light-theme .doc-name {
     right: 4px;
   }
   .nav-arrow svg {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
+    fill: #ffffff !important;
   }
   .help-toast {
     top: 42px;

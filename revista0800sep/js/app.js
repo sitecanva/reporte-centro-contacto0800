@@ -328,6 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageIndex = e.data;
     sound.play();
     updateUI(pageIndex);
+    showMobileArrowsTemporary(3500);
     if (autoplayInterval) resetAutoplayProgress();
 
     // Auto-dismiss help toast once user flips away from the cover
@@ -339,12 +340,14 @@ document.addEventListener('DOMContentLoaded', () => {
   pageFlip.on('changeOrientation', (e) => {
     updateOrientationUI(e.data);
     adjustFlipbookSize();
+    showMobileArrowsTemporary(3500);
   });
 
   pageFlip.on('init', (e) => {
     updateUI(0);
     updateOrientationUI(pageFlip.getOrientation());
     adjustFlipbookSize();
+    showMobileArrowsTemporary(4000);
   });
 
   function updateOrientationUI(orientation) {
@@ -420,26 +423,70 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Floating Side Arrows: Auto-show for seconds on mobile, then smoothly fade out to not obstruct reading
+  let mobileArrowsTimer = null;
+  const mobileArrows = [prevNavBtn, nextNavBtn];
+
+  function showMobileArrowsTemporary(duration = 3500) {
+    if (window.innerWidth > 768) {
+      mobileArrows.forEach(btn => {
+        btn.classList.remove('mobile-hidden');
+        btn.classList.remove('mobile-visible');
+      });
+      return;
+    }
+
+    mobileArrows.forEach(btn => {
+      btn.classList.remove('mobile-hidden');
+      btn.classList.add('mobile-visible');
+    });
+
+    clearTimeout(mobileArrowsTimer);
+    mobileArrowsTimer = setTimeout(() => {
+      if (window.innerWidth <= 768) {
+        mobileArrows.forEach(btn => {
+          btn.classList.remove('mobile-visible');
+          btn.classList.add('mobile-hidden');
+        });
+      }
+    }, duration);
+  }
+
+  // Any screen tap / touch in mobile reveals floating arrows temporarily
+  document.addEventListener('touchstart', (e) => {
+    showMobileArrowsTemporary(3500);
+  }, { passive: true });
+
+  document.addEventListener('pointerdown', (e) => {
+    if (window.innerWidth <= 768) {
+      showMobileArrowsTemporary(3500);
+    }
+  }, { passive: true });
+
   // Navigation handlers
   prevBtn.addEventListener('click', () => {
     stageZoom = 1.0;
     applyStageZoom();
     pageFlip.flipPrev();
+    showMobileArrowsTemporary(3500);
   });
   prevNavBtn.addEventListener('click', () => {
     stageZoom = 1.0;
     applyStageZoom();
     pageFlip.flipPrev();
+    showMobileArrowsTemporary(3500);
   });
   nextBtn.addEventListener('click', () => {
     stageZoom = 1.0;
     applyStageZoom();
     pageFlip.flipNext();
+    showMobileArrowsTemporary(3500);
   });
   nextNavBtn.addEventListener('click', () => {
     stageZoom = 1.0;
     applyStageZoom();
     pageFlip.flipNext();
+    showMobileArrowsTemporary(3500);
   });
 
   // Scrubber slider (real-time preview & debounced flip for ultra smoothness and sensitivity)
