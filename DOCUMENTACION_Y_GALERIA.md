@@ -7,7 +7,7 @@
 > **Muestra Auditada:** 1,826 interacciones  
 > **Fecha de Elaboración:** 21/10/2026  
 > **Enlace del Proyecto (GitHub):** [reporte-centro-contacto0800](https://github.com/sitecanva/reporte-centro-contacto0800.git)  
-> **Enlace de Exportación:** [Presentación en Canva](https://canva.link/vjscbjd41ubd24b)  
+> **Enlace de Exportación:** [Revista Digital](https://sitecanva.github.io/reporte-centro-contacto0800/revista0800sep/)  
 > **Documento Base de Trabajo:** [Informe Operativo en Google Docs](https://docs.google.com/document/d/1x3r3bTbMh5RCe4ckTuUSEXqVJm4i6YnuiOlVqdtpgj0/edit?usp=sharing)
 
 ---
