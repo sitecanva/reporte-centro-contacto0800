@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Reporte Estadístico - Centro de Contacto | iPulso CANTV</title>
+  <meta name="description" content="Informe Operativo Septiembre 2026 - Revista digital interactiva con efecto 3D Page Flipbook">
+  
+  <!-- Favicon / Brand icons -->
+  <link rel="icon" type="image/png" href="assets/ipulso_logo.png">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Autoplay indicator bar -->
+  <div id="autoplay-bar" class="autoplay-bar"></div>
+
+  <!-- Header Bar -->
+  <header class="app-header">
+    <div class="brand-wrapper">
+      <img src="assets/ipulso_logo.png" alt="iPulso Logo" class="brand-logo">
+      <div class="brand-separator"></div>
+      <div class="brand-title">
+        <span class="doc-name">Reporte Estadístico - Centro de Contacto</span>
+        <span class="doc-period">Período: Septiembre 2026 &bull; 1.826 casos</span>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <!-- Table of Contents -->
+      <button id="btn-toc" class="btn-icon" title="Tabla de Contenidos (T)">
+        <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+        <span>Índice</span>
+      </button>
+
+      <!-- Thumbnails Drawer -->
+      <button id="btn-thumbs" class="btn-icon" title="Ver Miniaturas">
+        <svg viewBox="0 0 24 24"><path d="M4 11h5V5H4v6zm0 7h5v-6H4v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5V5h-5v6zm6-6v6h5V5h-5z"/></svg>
+        <span>Miniaturas</span>
+      </button>
+
+      <!-- Zoom Modal -->
+      <button id="btn-zoom" class="btn-icon" title="Zoom de Alta Resolución (Z)">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7h-1v2H7v1h2v2h1v-2h2V9h-2V7z"/></svg>
+        <span>Zoom</span>
+      </button>
+
+      <!-- Sound Toggle -->
+      <button id="btn-sound" class="btn-icon active" title="Sonido de Hoja (M)">
+        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        <span class="sound-label">Sonido: ON</span>
+      </button>
+
+      <!-- View Mode (Single vs Spread) -->
+      <button id="btn-view-mode" class="btn-icon" title="Cambiar Vista (1 Página Vertical / 2 Páginas)">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 16H5V5h6v14zm8 0h-6V5h6v14z"/></svg>
+        <span class="view-mode-label">2 Págs</span>
+      </button>
+
+      <!-- Autoplay (Presentation Mode) -->
+      <button id="btn-autoplay" class="btn-icon" title="Modo Presentación Automática">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <span class="autoplay-label">Presentar</span>
+      </button>
+
+      <!-- Theme Switcher -->
+      <button id="btn-theme" class="btn-icon" title="Cambiar Iluminación (Oscuro / Claro)">
+        <svg viewBox="0 0 24 24"><path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/></svg>
+      </button>
+
+      <!-- Help Button -->
+      <button id="btn-help" class="btn-icon" title="Ayuda e Instrucciones (?)">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+        <span>Ayuda</span>
+      </button>
+
+      <!-- Download Original PDF -->
+      <a href="assets/informe_septiembre_2026_oficial.pdf" download="Informe_Operativo_Centro_Contacto_Septiembre_2026.pdf" class="btn-icon" title="Descargar PDF Original">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      </a>
+
+      <!-- Fullscreen Toggle -->
+      <button id="btn-fullscreen" class="btn-icon btn-pulse-glow" title="Pantalla Completa (F)">
+        <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Interactive Help & Gesture Guide Toast -->
+  <aside id="help-toast" class="help-toast">
+    <div class="help-toast-body">
+      <!-- Animated Mouse Icon -->
+      <div class="mouse-anim-container">
+        <svg class="mouse-svg" viewBox="0 0 48 64" width="34" height="46">
+          <!-- Mouse Base Outline -->
+          <rect x="8" y="6" width="32" height="52" rx="16" ry="16" fill="rgba(10, 20, 50, 0.9)" stroke="#00e5ff" stroke-width="2.5" />
+          <!-- Middle divider line -->
+          <line x1="24" y1="6" x2="24" y2="28" stroke="#00e5ff" stroke-width="2" opacity="0.6"/>
+          <!-- Horizontal button line -->
+          <path d="M8 28 h32" stroke="#00e5ff" stroke-width="2" opacity="0.6"/>
+          <!-- Animated Left Click Button -->
+          <path class="mouse-left-btn" d="M8 22 C8 13.16 15.16 6 24 6 L24 28 L8 28 Z" fill="#00e5ff" />
+          <!-- Scroll Wheel -->
+          <rect x="22" y="14" width="4" height="9" rx="2" fill="#ffffff" class="mouse-wheel" />
+        </svg>
+        <div class="mouse-swipe-arrow">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="#00e5ff"><path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"/></svg>
+        </div>
+      </div>
+
+      <div class="help-toast-content">
+        <div class="help-title">
+          <span>Interacción Táctil y Gestual</span>
+          <span class="help-badge">3D Flipbook</span>
+        </div>
+        <p class="help-instruction">
+          <strong>Mantén presionado el botón izquierdo</strong> sobre la página para <strong>deslizar y voltear la hoja</strong> como una revista física.
+        </p>
+        <div class="help-tips-row">
+          <span class="help-tip-chip">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="#00e5ff"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+            Presiona <strong>F</strong> o haz clic en <button id="btn-toast-fullscreen" class="chip-action">Pantalla Completa</button> para un ajuste perfecto
+          </span>
+          <span class="help-tip-chip">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="#00e5ff"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            Usa el <strong>scroll de la rueda del ratón</strong> para hacer Zoom
+          </span>
+        </div>
+      </div>
+
+      <button id="btn-close-toast" class="btn-close-toast" title="Cerrar ayuda (Esc)">✕</button>
+    </div>
+  </aside>
+
+  <!-- Main Viewport for Flipbook -->
+  <main class="main-stage">
+    <!-- Floating Side Nav Buttons -->
+    <button id="nav-prev" class="nav-arrow prev" title="Página Anterior (Flecha Izq / RePág)">
+      <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    <button id="nav-next" class="nav-arrow next" title="Página Siguiente (Flecha Der / AvPág)">
+      <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </button>
+
+    <!-- In-Stage Mouse Wheel Zoom Floating HUD -->
+    <div id="stage-zoom-hud" class="stage-zoom-hud">
+      <span class="zoom-hud-label">🔍 Zoom: <strong id="hud-zoom-val">100%</strong></span>
+      <button id="hud-zoom-out" class="hud-btn" title="Alejar (-)">−</button>
+      <button id="hud-zoom-in" class="hud-btn" title="Acercar (+)">+</button>
+      <button id="hud-zoom-reset" class="hud-btn reset" title="Restablecer (100%)">Restablecer</button>
+      <span class="hud-hint">Arrastra para mover la página</span>
+    </div>
+
+    <!-- Flipbook Render Area -->
+    <div class="flipbook-viewport">
+      <div id="flipbook" class="flipbook-container">
+        <!-- Page 1: Hard Cover -->
+        <div class="page page-cover" data-density="hard">
+          <img src="pages/page_1.png" alt="Página 1 - Portada Oficial Centro de Contacto">
+        </div>
+
+        <!-- Page 2 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_2.png" alt="Página 2 - Resumen General y Metadatos">
+        </div>
+
+        <!-- Page 3 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_3.png" alt="Página 3 - Volumen por Segmento y Top 5 Productos">
+        </div>
+
+        <!-- Page 4 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_4.png" alt="Página 4 - Distribución por Tipo de Solicitud y Averías">
+        </div>
+
+        <!-- Page 5 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_5.png" alt="Página 5 - Análisis Detallado de OTRO REQUERIMIENTO">
+        </div>
+
+        <!-- Page 6 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_6.png" alt="Página 6 - Comportamiento por Día y Semana">
+        </div>
+
+        <!-- Page 7 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_7.png" alt="Página 7 - Ranking de Efectividad de Ejecutivos">
+        </div>
+
+        <!-- Page 8 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_8.png" alt="Página 8 - Ranking de Ejecutivos por Volumen">
+        </div>
+
+        <!-- Page 9 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_9.png" alt="Página 9 - Estado Final y Hallazgos Críticos">
+        </div>
+
+        <!-- Page 10 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_10.png" alt="Página 10 - Averías de Fibra y Llamadas Caídas">
+        </div>
+
+        <!-- Page 11 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_11.png" alt="Página 11 - Capacidad Ociosa del Talento Humano">
+        </div>
+
+        <!-- Page 12 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_12.png" alt="Página 12 - Implicaciones y Recomendaciones de Capacidad">
+        </div>
+
+        <!-- Page 13 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_13.png" alt="Página 13 - Volumen Vs Efectividad FCR">
+        </div>
+
+        <!-- Page 14 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_14.png" alt="Página 14 - Análisis Cualitativo FCR y Brecha">
+        </div>
+
+        <!-- Page 15 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_15.png" alt="Página 15 - Conclusiones y Dotación por Día">
+        </div>
+
+        <!-- Page 16 -->
+        <div class="page" data-density="soft">
+          <img src="pages/page_16.png" alt="Página 16 - Datos Clave del Período">
+        </div>
+
+        <!-- Page 17: Hard Back Cover -->
+        <div class="page page-cover" data-density="hard">
+          <img src="pages/page_17.png" alt="Página 17 - Contraportada Institucional iPulso CANTV">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom Toolbar -->
+  <footer class="app-toolbar">
+    <div class="toolbar-left">
+      <button id="btn-prev" class="btn-icon" title="Página Anterior">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        <span>Anterior</span>
+      </button>
+      <button id="btn-next" class="btn-icon" title="Página Siguiente">
+        <span>Siguiente</span>
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+
+    <div class="toolbar-center">
+      <div id="page-counter" class="page-counter">
+        Página <span class="page-badge">1</span> de 17
+      </div>
+      <div class="scrubber-container">
+        <input type="range" id="page-scrubber" class="page-scrubber" min="1" max="17" value="1" step="1">
+      </div>
+    </div>
+
+    <div class="toolbar-right">
+      <span id="mode-indicator" class="mode-indicator">Modo: Doble Página</span>
+      <button id="btn-view-mode" class="btn-icon" style="display:none;" title="Alternar Vista">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 16H5V5h6v14zm8 0h-6V5h6v14z"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Table of Contents Modal -->
+  <div id="toc-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#00e5ff"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+          Tabla de Contenidos &bull; Índice de Secciones
+        </div>
+        <button id="btn-close-toc" class="modal-close" title="Cerrar (Esc)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="toc-grid" class="toc-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thumbnails Drawer (Bottom Strip) -->
+  <div id="thumbs-drawer" class="thumbnails-drawer">
+    <div class="drawer-header">
+      <span>Vista en Miniaturas &bull; Haz clic en cualquier página para navegar</span>
+      <button id="btn-close-thumbs" class="modal-close" title="Cerrar Miniaturas">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      </button>
+    </div>
+    <div id="thumbs-track" class="drawer-content"></div>
+  </div>
+
+  <!-- High-Res Zoom Lightbox Modal -->
+  <div id="zoom-modal" class="zoom-modal">
+    <div class="zoom-header">
+      <div class="zoom-controls">
+        <button id="btn-zoom-in" class="btn-icon" title="Acercar (+)">
+          <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+          <span>Acercar</span>
+        </button>
+        <button id="btn-zoom-out" class="btn-icon" title="Alejar (-)">
+          <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
+          <span>Alejar</span>
+        </button>
+        <button id="btn-zoom-reset" class="btn-icon" title="Restablecer (100%)">
+          <span>Restablecer</span>
+        </button>
+        <span class="mode-indicator">Arrastra con el ratón para mover o usa la rueda</span>
+      </div>
+      <button id="btn-close-zoom" class="modal-close" title="Cerrar Zoom (Esc)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      </button>
+    </div>
+    <div id="zoom-stage" class="zoom-stage">
+      <img id="zoom-image" src="" alt="Vista Detallada">
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/page-flip.browser.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

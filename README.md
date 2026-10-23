@@ -90,6 +90,7 @@ reporte-centro-contacto/
 
 ## 🔗 Documentación y Referencia Oficial
 
+- 📖 **Revista Digital 3D Flipbook (Septiembre 2026):** [Ver Revista 3D](https://sitecanva.github.io/reporte-centro-contacto0800/revista0800sep/) | [Carpeta en el Repositorio](revista0800sep/)
 - 📖 **Documentación Completa y Galería Visual:** [DOCUMENTACION_Y_GALERIA.md](DOCUMENTACION_Y_GALERIA.md)
 - 🖨️ **Presentación en Canva (Botón Exportar):** [Presentación en Canva](https://canva.link/vjscbjd41ubd24b)
 - 📄 **Documento de Trabajo de Referencia:** [Informe Operativo en Google Docs](https://docs.google.com/document/d/1x3r3bTbMh5RCe4ckTuUSEXqVJm4i6YnuiOlVqdtpgj0/edit?usp=sharing)
