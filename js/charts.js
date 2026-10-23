@@ -22,6 +22,28 @@ const AppCharts = {
         return gradient;
     },
 
+    // Divide etiquetas largas en múltiples líneas para evitar recortes en ejes
+    splitLabel(label, maxChars = 20) {
+        if (!label) return '';
+        // Normalizar barras con espacios para permitir quiebres limpios
+        const normalized = label.replace(/([^\s])\/([^\s])/g, '$1 / $2');
+        if (normalized.length <= maxChars) return label;
+        
+        const words = normalized.split(' ');
+        const lines = [];
+        let curLine = '';
+        words.forEach(w => {
+            if ((curLine ? curLine + ' ' + w : w).length <= maxChars) {
+                curLine = (curLine ? curLine + ' ' + w : w);
+            } else {
+                if (curLine) lines.push(curLine);
+                curLine = w;
+            }
+        });
+        if (curLine) lines.push(curLine);
+        return lines.length > 1 ? lines : label;
+    },
+
     // Opciones globales de estilo Cyberpunk
     getCommonOptions(title = '') {
         return {
@@ -197,9 +219,11 @@ const AppCharts = {
         const ctx = document.getElementById('chart-averias')?.getContext('2d');
         if (!ctx) return;
 
-        const labels = REPORT_DATA.averiasFallas.map(a => a.nombre);
-        const data = REPORT_DATA.averiasFallas.map(a => a.casos);
-        const colors = REPORT_DATA.averiasFallas.map(a => a.esOtroReq ? '#FF00A8' : '#66FFFF');
+        const rawItems = REPORT_DATA.averiasFallas;
+        const maxChars = window.innerWidth < 640 ? 14 : 22;
+        const labels = rawItems.map(a => this.splitLabel(a.nombre, maxChars));
+        const data = rawItems.map(a => a.casos);
+        const colors = rawItems.map(a => a.esOtroReq ? '#FF00A8' : '#66FFFF');
 
         this.instances.averias = new Chart(ctx, {
             type: 'bar',
@@ -218,7 +242,29 @@ const AppCharts = {
                 ...this.getCommonOptions(),
                 indexAxis: 'y',
                 plugins: {
-                    legend: { display: false }
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: function(items) {
+                                if (!items || !items.length) return '';
+                                return rawItems[items[0].dataIndex]?.nombre || '';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(102, 255, 255, 0.08)' },
+                        ticks: { color: '#9cb3d3', font: { family: "'Montserrat', system-ui, sans-serif", size: 10 } }
+                    },
+                    y: {
+                        grid: { color: 'rgba(102, 255, 255, 0.08)' },
+                        ticks: {
+                            color: '#9cb3d3',
+                            autoSkip: false,
+                            font: { family: "'Montserrat', system-ui, sans-serif", size: window.innerWidth < 640 ? 9.5 : 11 }
+                        }
+                    }
                 }
             }
         });
@@ -230,7 +276,8 @@ const AppCharts = {
         if (!ctx) return;
 
         const subcats = REPORT_DATA.otroRequerimiento.subcategorias;
-        const labels = subcats.map(s => s.nombre);
+        const maxChars = window.innerWidth < 640 ? 14 : 20;
+        const labels = subcats.map(s => this.splitLabel(s.nombre, maxChars));
         const data = subcats.map(s => s.casos);
 
         this.instances.otroReq = new Chart(ctx, {
@@ -253,6 +300,10 @@ const AppCharts = {
                     legend: { display: false },
                     tooltip: {
                         callbacks: {
+                            title: function(items) {
+                                if (!items || !items.length) return '';
+                                return subcats[items[0].dataIndex]?.nombre || '';
+                            },
                             afterLabel: function(ctx) {
                                 const item = subcats[ctx.dataIndex];
                                 return [
@@ -260,6 +311,20 @@ const AppCharts = {
                                     `Casos Totales en el Mes: ${item.casosTotalesMes} (${item.pctMes}%)`
                                 ];
                             }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(102, 255, 255, 0.08)' },
+                        ticks: { color: '#9cb3d3', font: { family: "'Montserrat', system-ui, sans-serif", size: 10 } }
+                    },
+                    y: {
+                        grid: { color: 'rgba(102, 255, 255, 0.08)' },
+                        ticks: {
+                            color: '#9cb3d3',
+                            autoSkip: false,
+                            font: { family: "'Montserrat', system-ui, sans-serif", size: window.innerWidth < 640 ? 9.5 : 11 }
                         }
                     }
                 }
@@ -482,7 +547,7 @@ const AppCharts = {
         const ctxCapacidad = document.getElementById('chart-capacidad-talento')?.getContext('2d');
         if (ctxCapacidad) {
             const grupos = REPORT_DATA.capacidadTalento.grupos;
-            const labels = grupos.map(g => `${g.tipo} (${g.cantidad} ejecutivos)`);
+            const labels = grupos.map(g => [g.tipo, `(${g.cantidad} ejecutivos)`]);
             const casosReales = grupos.map(g => g.casos);
             const promedioReal = grupos.map(g => g.promedio);
             const promedioIdeal = [96.1, 96.1, 96.1];
@@ -510,7 +575,24 @@ const AppCharts = {
                         }
                     ]
                 },
-                options: this.getCommonOptions('Comparación de Carga Real vs Ideal (Casos/Ejecutivo)')
+                options: {
+                    ...this.getCommonOptions('Comparación de Carga Real vs Ideal (Casos/Ejecutivo)'),
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(102, 255, 255, 0.08)' },
+                            ticks: {
+                                color: '#9cb3d3',
+                                autoSkip: false,
+                                maxRotation: 0,
+                                font: { family: "'Montserrat', system-ui, sans-serif", size: window.innerWidth < 640 ? 9.5 : 11 }
+                            }
+                        },
+                        y: {
+                            grid: { color: 'rgba(102, 255, 255, 0.08)' },
+                            ticks: { color: '#9cb3d3', font: { family: "'Montserrat', system-ui, sans-serif", size: 10 } }
+                        }
+                    }
+                }
             });
         }
 

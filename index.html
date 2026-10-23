@@ -370,7 +370,7 @@
                         <span class="chart-card-title">Tipificación en Columna de Averías</span>
                         <span class="glass-pill">82.3% en Otro Requerimiento</span>
                     </div>
-                    <div class="chart-container-box">
+                    <div class="chart-container-box chart-box-lg">
                         <canvas id="chart-averias"></canvas>
                     </div>
                 </div>
@@ -420,7 +420,7 @@
                         <span class="chart-card-title">Subcategorías de OTRO REQUERIMIENTO</span>
                         <span class="glass-pill">Facturación lidera</span>
                     </div>
-                    <div class="chart-container-box">
+                    <div class="chart-container-box chart-box-lg">
                         <canvas id="chart-otro-req"></canvas>
                     </div>
                 </div>
@@ -430,7 +430,7 @@
                         Distribución de Subcategorías
                     </h3>
                     <div class="table-responsive">
-                        <table class="glass-table">
+                        <table class="glass-table table-otro-req">
                             <thead>
                                 <tr>
                                     <th>Subcategoría</th>
@@ -550,8 +550,15 @@
 
             <!-- Matriz Scatter Cuadrantes -->
             <div class="glass-panel" style="padding: 24px; margin-bottom: 24px;">
-                <div class="chart-card-header">
-                    <span class="chart-card-title">Matriz Cuadrante: Volumen de Casos vs Efectividad FCR (%)</span>
+                <div class="chart-card-header matrix-header">
+                    <div class="matrix-title-wrap">
+                        <span class="chart-card-title">Matriz Cuadrante: Volumen de Casos vs Efectividad FCR (%)</span>
+                        <div class="header-badges matrix-legend-badges">
+                            <span class="badge-tag badge-fuchsia">Alta Carga</span>
+                            <span class="badge-tag badge-cyan">Carga Media</span>
+                            <span class="badge-tag badge-gold">Baja Carga</span>
+                        </div>
+                    </div>
                     <span class="glass-pill">19 Ejecutivos Analizados</span>
                 </div>
                 <div class="chart-container-box" style="min-height: 340px;">
@@ -577,12 +584,6 @@
                         <option value="casos-desc">Ordenar: Mayor Volumen</option>
                         <option value="casos-asc">Ordenar: Menor Volumen</option>
                     </select>
-                </div>
-
-                <div class="header-badges exec-badges">
-                    <span class="badge-tag badge-fuchsia">Alta Carga</span>
-                    <span class="badge-tag badge-cyan">Carga Media</span>
-                    <span class="badge-tag badge-gold">Baja Carga</span>
                 </div>
             </div>
 
@@ -807,44 +808,46 @@
                     10.4 Capacidad Ociosa del Talento Humano
                 </h3>
                 <div class="grid-2col">
-                    <div class="chart-container-box" style="min-height: 280px;">
+                    <div class="chart-container-box chart-box-md">
                         <canvas id="chart-capacidad-talento"></canvas>
                     </div>
                     <div>
-                        <table class="glass-table">
-                            <thead>
-                                <tr>
-                                    <th>Grupo</th>
-                                    <th class="col-center">Ejecutivos</th>
-                                    <th class="col-right">Casos</th>
-                                    <th class="col-right">Prom./Ejec.</th>
-                                    <th class="col-right">Desviación</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><span class="badge-tag badge-fuchsia">Alta carga</span></td>
-                                    <td class="col-center">7</td>
-                                    <td class="col-right">1,392</td>
-                                    <td class="col-right">198.9</td>
-                                    <td class="col-right" style="color: var(--neon-fuchsia);">+107%</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="badge-tag badge-cyan">Carga media</span></td>
-                                    <td class="col-center">4</td>
-                                    <td class="col-right">306</td>
-                                    <td class="col-right">76.5</td>
-                                    <td class="col-right" style="color: var(--neon-cyan);">-20%</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="badge-tag badge-gold">Baja carga</span></td>
-                                    <td class="col-center">8</td>
-                                    <td class="col-right">128</td>
-                                    <td class="col-right">16.0</td>
-                                    <td class="col-right" style="color: var(--neon-gold);">-83%</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="glass-table table-capacidad">
+                                <thead>
+                                    <tr>
+                                        <th>Grupo</th>
+                                        <th class="col-center">Ejecutivos</th>
+                                        <th class="col-right">Casos</th>
+                                        <th class="col-right">Prom./Ejec.</th>
+                                        <th class="col-right">Desviación</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="badge-tag badge-fuchsia">Alta carga</span></td>
+                                        <td class="col-center">7</td>
+                                        <td class="col-right">1,392</td>
+                                        <td class="col-right">198.9</td>
+                                        <td class="col-right" style="color: var(--neon-fuchsia);">+107%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge-tag badge-cyan">Carga media</span></td>
+                                        <td class="col-center">4</td>
+                                        <td class="col-right">306</td>
+                                        <td class="col-right">76.5</td>
+                                        <td class="col-right" style="color: var(--neon-cyan);">-20%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge-tag badge-gold">Baja carga</span></td>
+                                        <td class="col-center">8</td>
+                                        <td class="col-right">128</td>
+                                        <td class="col-right">16.0</td>
+                                        <td class="col-right" style="color: var(--neon-gold);">-83%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="callout-box callout-gold" style="margin-top: 14px;">
                             <div class="callout-title">Oportunidad de Absorción: +641 Casos (+35%)</div>
                             Los 8 ejecutivos de baja carga atienden solo 16 casos promedio en el mes. Si alcanzaran el promedio ideal (96.1 casos), absorberían <strong>+641 casos adicionales</strong> sin incrementar nómina.

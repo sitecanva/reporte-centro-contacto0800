@@ -573,11 +573,28 @@ body {
     flex-grow: 1;
 }
 
+.chart-box-lg {
+    min-height: 460px;
+}
+
+.chart-box-md {
+    min-height: 320px;
+}
+
 /* Glass Tables */
 .table-responsive {
     width: 100%;
     overflow-x: auto;
     border-radius: var(--radius-md);
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-otro-req {
+    min-width: 520px;
+}
+
+.table-capacidad {
+    min-width: 440px;
 }
 
 .glass-table {
@@ -1018,6 +1035,66 @@ body {
     flex-wrap: wrap;
 }
 
+/* Matriz Cuadrante Section 8 Title & Badges Header */
+.matrix-header {
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.matrix-title-wrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.matrix-legend-badges {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.badge-legend {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-family: var(--font-heading);
+    font-weight: 500;
+}
+
+.badge-legend.badge-alta {
+    background: rgba(102, 255, 255, 0.12);
+    color: var(--neon-cyan);
+    border: 1px solid rgba(102, 255, 255, 0.35);
+}
+
+.badge-legend.badge-media {
+    background: rgba(255, 237, 0, 0.12);
+    color: var(--neon-gold);
+    border: 1px solid rgba(255, 237, 0, 0.35);
+}
+
+.badge-legend.badge-baja {
+    background: rgba(255, 0, 168, 0.12);
+    color: var(--neon-fuchsia);
+    border: 1px solid rgba(255, 0, 168, 0.35);
+}
+
+.badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-cyan { background-color: var(--neon-cyan); box-shadow: 0 0 6px var(--neon-cyan); }
+.dot-gold { background-color: var(--neon-gold); box-shadow: 0 0 6px var(--neon-gold); }
+.dot-magenta { background-color: var(--neon-fuchsia); box-shadow: 0 0 6px var(--neon-fuchsia); }
+
 /* ==========================================================================
    Comprehensive Responsive System
    ========================================================================== */
@@ -1198,6 +1275,27 @@ body {
 
     .chart-container-box {
         min-height: 240px;
+    }
+
+    .chart-box-lg {
+        min-height: 420px;
+    }
+
+    .chart-box-md {
+        min-height: 280px;
+    }
+
+    .matrix-title-wrap {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .matrix-legend-badges {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 6px;
     }
 
     /* Controles de ejecutivos en móvil */
